@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+  
+  <head>
+    <meta charset="utf-8">
+    <title>Gallery</title>
+    <script src="https://aframe.io/releases/1.2.0/aframe.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="styles.css">
+    <script src="https://aframe.io/releases/1.2.0/aframe.min.js"></script>
+    <link href='https://fonts.googleapis.com/css?family=Poppins' rel='stylesheet'>
+    <script type="text/javascript" src="moonScript.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
+  </head>
+  
+  <body>
+    
+    <div class="buttons">
+          <button class="b1"><i class="fa-solid fa-play"></i></button>
+          <button class="b2"><i class="fa-solid fa-rotate-right"></i></button>
+    </div>
+
+    <div class="card" style="visibility: visible !important;"> 
+        <h3>Explanation</h3>
+        <p> Both the feather and the ball reach the ground at the same time as their is no air resistance on the Moon causing the feather to slow down, although it has a negligeable weight. </p>
+      </div>
+
+    <a-scene>
+           
+      <a-asset-item
+             id="frame" 
+             src="https://cdn.glitch.global/4dc206a2-bbc7-4ff6-90d7-443e49c762bc/scene.gltf?v=1695901339124"
+                    >
+      </a-asset-item>
+      
+       
+         
+      <a-plane material="color: grey"
+               scale="10000 10000 1"
+               rotation="-90 0 0"
+               shadow="receive: true">
+      </a-plane>
+      
+      <a-camera position="0 1.6 5"></a-camera>
+      
+    
+      <a-box id="feather"
+             color="white"
+             position="-0.5 1 0"
+             scale="0.7 0.02 0.5"
+             shadow="cast: true"
+             shader="flat"></a-box>
+      
+      <a-sphere id="ball"
+                color="black" 
+                radius="0.2"
+                position="0.5 1 0"
+                shadow="cast: true"
+                shader="flat"></a-sphere>
+      
+           
+      </a-scene>
+    
+  </body>
+
+</html>
