@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://aframe.io/releases/1.2.0/aframe.min.js"></script>
+    <script src="https://unpkg.com/aframe-event-set-component@3.0.3/dist/aframe-event-set-component.min.js"></script>
+    <script src="rotation.js"></script>
+</head>
+<body>
+    <a-scene>
+        <a-sky src="assets/milkyway.jpg"></a-sky>
+        <!-- Sun -->
+        <a-sphere position="0 0 0" radius="10" color="#ffcc00"></a-sphere>
+
+        <!-- Orbits -->
+        <a-torus position="0 0 0" radius="15" radius-tubular="0.005" segments-tubular="128" rotation="-90 0 0" color="#999999"></a-torus> <!-- Mercury -->
+        <a-torus position="0 0 0" radius="20" radius-tubular="0.005" segments-tubular="128" rotation="-90 0 0" color="#cccccc"></a-torus> <!-- Venus -->
+        <a-torus position="0 0 0" radius="30" radius-tubular="0.005" segments-tubular="128" rotation="-90 0 0" color="#6666ff"></a-torus> <!-- Earth -->
+        <a-torus position="0 0 0" radius="45" radius-tubular="0.005" segments-tubular="128" rotation="-90 0 0" color="#ff6666"></a-torus> <!-- Mars -->
+        <a-torus position="0 0 0" radius="70" radius-tubular="0.005" segments-tubular="128" rotation="-90 0 0" color="#ffcc66"></a-torus> <!-- Jupiter -->
+        <a-torus position="0 0 0" radius="100" radius-tubular="0.005" segments-tubular="128" rotation="-90 0 0" color="#ff9900"></a-torus> <!-- Saturn -->
+        <a-torus position="0 0 0" radius="130" radius-tubular="0.005" segments-tubular="128" rotation="-90 0 0" color="#66ccff"></a-torus> <!-- Uranus -->
+        <a-torus position="0 0 0" radius="160" radius-tubular="0.005" segments-tubular="128" rotation="-90 0 0" color="#3366ff"></a-torus> <!-- Neptune -->
+
+        <!-- Planets -->
+        <a-sphere position="15 0 0" radius="0.3" color="#bfbfbf" rotation="0 0 0">
+            <a-animation attribute="rotation" dur="10000" to="0 360 0" easing="linear" repeat="indefinite"></a-animation>
+        </a-sphere> <!-- Mercury -->
+        <a-sphere position="20 0 0" radius="0.7" color="#ffcc66" rotation="0 0 0">
+            <a-animation attribute="rotation" dur="20000" to="0 360 0" easing="linear" repeat="indefinite"></a-animation>
+        </a-sphere> <!-- Venus -->
+        <a-sphere position="30 0 0" radius="0.75" color="#3399ff" rotation="0 0 0">
+            <a-animation attribute="rotation" dur="30000" to="0 360 0" easing="linear" repeat="indefinite"></a-animation>
+        </a-sphere> <!-- Earth -->
+        <a-sphere position="45 0 0" radius="0.5" color="#ff6600" rotation="0 0 0">
+            <a-animation attribute="rotation" dur="40000" to="0 360 0" easing="linear" repeat="indefinite"></a-animation>
+        </a-sphere> <!-- Mars -->
+        <a-sphere position="70 0 0" radius="2" color="#ff9900" rotation="0 0 0">
+            <a-animation attribute="rotation" dur="50000" to="0 360 0" easing="linear" repeat="indefinite"></a-animation>
+        </a-sphere> <!-- Jupiter -->
+        <a-sphere position="100 0 0" radius="1.5" color="#ffcc00" rotation="0 0 0">
+            <a-animation attribute="rotation" dur="60000" to="0 360 0" easing

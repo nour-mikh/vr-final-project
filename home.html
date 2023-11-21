@@ -11,6 +11,7 @@
     <script src="https://aframe.io/releases/1.2.0/aframe.min.js"></script>
     <link href='https://fonts.googleapis.com/css?family=Poppins' rel='stylesheet'>
     <script src="scripts/script.js"></script>
+    <script src="scripts/home.js"></script>
     <script src="https://unpkg.com/aframe-event-set-component@3.0.3/dist/aframe-event-set-component.min.js"></script>
   </head>
   <body>
@@ -22,6 +23,8 @@
     </div>
     <a-scene>
         <a-sky src="assets/milkyway.jpg"></a-sky>
-    </a-scene>
+        <a-entity text="value: Welcome to the Milky Way Galaxy!" scale="10 10 10" position="0 0 -10"></a-entity>
+        <a-entity text="value: This is an interactive tour of our galaxy. You have the option to travel through space and explore the planets of our Solar Sytem." scale="5 5 5" position="-2 -2 -10"></a-entity>
+      </a-scene>
 
   </body>
