@@ -1,65 +1,123 @@
 <!DOCTYPE html>
 <html>
-  
   <head>
-    <meta charset="utf-8">
-    <title>Gallery</title>
-    <script src="https://aframe.io/releases/1.2.0/aframe.min.js"></script>
-    <link rel="stylesheet" type="text/css" href="styles/styles.css">
-    <script src="https://aframe.io/releases/1.2.0/aframe.min.js"></script>
-    <link href='https://fonts.googleapis.com/css?family=Poppins' rel='stylesheet'>
-    <script type="text/javascript" src="scripts/moonScript.js"></script>
+   <script src="https://aframe.io/releases/1.2.0/aframe.min.js"></script>
+     <script type="text/javascript" src="index.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
+   <style>
+    .buttons {
+      position: absolute;
+      bottom: 10px;
+      left: 0;
+      width: 100%;
+      height: 10em;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 999;
+      }
+    
+    .b1, .b2{
+      margin: 5px;
+      padding: 5px;
+      border: 2px solid white;
+      border-radius: 10px;
+      background: transparent;
+      color: white;
+      font-weight: bold;
+      font-size: 14px;
+      font-family: Poppins, fantasy;
+      width: 4em;
+      height: 3 em;
+    }
+      
+    .b1:active, .b2:active {
+  background-color: #A9A9A9;
+  transform: translateY(4px);
+    }
+    </style>
   </head>
-  
+
   <body>
     
-    <div class="buttons">
+      <div class="buttons">
           <button class="b1"><i class="fa-solid fa-play"></i></button>
           <button class="b2"><i class="fa-solid fa-rotate-right"></i></button>
     </div>
 
-    <div class="card" style="visibility: visible !important;"> 
-        <h3>Explanation</h3>
-        <p> Both the feather and the ball reach the ground at the same time as their is no air resistance on the Moon causing the feather to slow down, although it has a negligeable weight. </p>
-      </div>
-
-    <a-scene>
-           
-      <a-asset-item
-             id="frame" 
-             src="https://cdn.glitch.global/4dc206a2-bbc7-4ff6-90d7-443e49c762bc/scene.gltf?v=1695901339124"
-                    >
-      </a-asset-item>
+    <a-scene background="color: black" physics="restitution:0.15;">
+ 
+      <a-assets>
+        <img
+          id="moon"
+          src="https://cdn.glitch.global/c7aa8148-2051-4aed-932f-9e416f941495/moon.jpg?v=1700083858350"
+        />
+        <img
+          id="moon_nm"
+          src="https://cdn.glitch.global/c7aa8148-2051-4aed-932f-9e416f941495/NormalMap%20(4).png?v=1700083967657"
+        />
+        <a-asset-item id="feather_1" src="https://cdn.glitch.global/c7aa8148-2051-4aed-932f-9e416f941495/feather.glb?v=1701941475194"></a-asset-item>
+        <a-asset-item id="box" src="https://cdn.glitch.global/c7aa8148-2051-4aed-932f-9e416f941495/glass_box.glb?v=1701941540747"></a-asset-item>
+        <a-asset-item id="ball_1" src="https://cdn.glitch.global/c7aa8148-2051-4aed-932f-9e416f941495/bowling_ball.glb?v=1701941420925"></a-asset-item>
+        <a-asset-item id="rover1" src="https://cdn.glitch.me/c7aa8148-2051-4aed-932f-9e416f941495/lunar_rover_from_the_movie_moon.glb?v=1701942485375"></a-asset-item>
+        <a-asset-item id="rover2" src="https://cdn.glitch.global/c7aa8148-2051-4aed-932f-9e416f941495/moon_rover.glb?v=1701942615592"></a-asset-item>
+        <a-asset-item id="rover3" src="https://cdn.glitch.me/c7aa8148-2051-4aed-932f-9e416f941495/rover_moon_and_rover_mars.glb?v=1701943274384"></a-asset-item>
       
-       
-         
-      <a-plane material="color: grey"
-               scale="10000 10000 1"
-               rotation="-90 0 0"
-               shadow="receive: true">
+      </a-assets>
+
+      
+     
+      <a-plane color="silver"
+               position="0 0 0"
+               material="color: silver;
+                       src: #moon;
+                       repeat: 20 20;
+                       normal-map: #moon_nm;
+                       normal-texture-repeat: 20 20;
+                       normal-scale: 1 -1;
+                       roughness: 0.5"
+               height="100"
+               width="100"
+               rotation="-90 0 -90">
       </a-plane>
+     <a-entity
+        gltf-model="#box"
+        scale="0.1 0.1 0.1"
+        position="7.5 0 -5"
+      ></a-entity>
+        <a-entity
+        id="feather"
+        gltf-model="#feather_1"
+        scale="0.01 0.01 0.01"
+        position="-0.2 1 -6"
+        rotation="90 0 90"
+      ></a-entity>
+       <a-entity
+        id="ball"
+        gltf-model="#ball_1"
+        scale="3 3 3"
+        position="0.2 1 -6"
+        rotation="90 0 90"
+      ></a-entity>
+     <a-entity
+        gltf-model="#rover1"
+        scale="0.5 0.5 0.5"
+        position="5 1 -10"
+        rotation="0 45 0"
+      ></a-entity>
+   <a-entity
+        gltf-model="#rover2"
+        scale="0.1 0.1 0.1"
+        position="-5 0 -10"
+        rotation="0 -45 0"
+      ></a-entity>
+    <a-entity
+        gltf-model="#rover3"
+        scale="0.5 0.5 0.5"
+        position="-2 0 -11"
+        rotation="0 45 0"
+      ></a-entity> 
       
-      <a-camera position="0 1.6 5"></a-camera>
-      
-    
-      <a-box id="feather"
-             color="white"
-             position="-0.5 1 0"
-             scale="0.7 0.02 0.5"
-             shadow="cast: true"
-             shader="flat"></a-box>
-      
-      <a-sphere id="ball"
-                color="black" 
-                radius="0.2"
-                position="0.5 1 0"
-                shadow="cast: true"
-                shader="flat"></a-sphere>
-      
-           
-      </a-scene>
-    
+    </a-scene>
   </body>
-
 </html>

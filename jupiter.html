@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+  <head>
+     <script src="https://aframe.io/releases/1.2.0/aframe.min.js"></script>
+     <script type="text/javascript" src="index.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
+  
+  </head>
+
+  <body>
+      
+ 
+    
+    <a-scene background="color: black" physics="restitution:0.15;">
+ 
+      <a-assets>
+        
+        
+        <a-asset-item id="jupiter" src="https://cdn.glitch.global/e08e8100-2c4b-45c6-99d1-0bdff5c913e4/jupiter.glb?v=1702327553907"></a-asset-item>
+      
+      </a-assets>
+      
+       <a-entity
+        gltf-model="#jupiter"
+        scale="100 100 100"
+        position="0 0 -200"
+        rotation="90 0 90"
+      ></a-entity>
+          
+     
+    </a-scene>
+  </body>
+</html>

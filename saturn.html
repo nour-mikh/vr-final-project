@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <script src="https://aframe.io/releases/1.2.0/aframe.min.js"></script>
+    <script type="text/javascript" src="indexSaturn.js"></script>
+    <link rel="stylesheet" href="style.css">
+    
+    <script src="https://raw.githubusercontent.com/schteppe/cannon.js/master/build/cannon.min.js"></script>
+    <script src="https://cdn.rawgit.com/donmccurdy/aframe-physics-system/v4.0.1/dist/aframe-physics-system.min.js"></script>
+    <script src="script.js"></script>
+    <script src="https://unpkg.com/aframe-physics-extras@0.1.2/dist/aframe-physics-extras.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
+    <style>
+    .buttons {
+      position: absolute;
+      bottom: 10px;
+      left: 0;
+      width: 100%;
+      height: 10em;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 999;
+      }
+    
+    .b1, .b2{
+      margin: 5px;
+      padding: 5px;
+      border: 2px solid white;
+      border-radius: 10px;
+      background: transparent;
+      color: white;
+      font-weight: bold;
+      font-size: 14px;
+      font-family: Poppins, fantasy;
+      width: 4em;
+      height: 3 em;
+    }
+      
+    .b1:active, .b2:active {
+  background-color: #A9A9A9;
+  transform: translateY(4px);
+    }
+    </style>
+  </head>
+
+  <body>
+    
+     
+    <div class="buttons">
+          <button class="b1"><i class="fa-solid fa-play"></i></button>
+          <button class="b2"><i class="fa-solid fa-rotate-right"></i></button>
+    </div>
+    
+    <div class="card" id="ringsCard"> 
+      <h3>
+        Saturn's Rings
+      </h3>
+      <p>
+        Saturn's rings consist of billions of icy particles, varying in size from micrometers to meters, orbiting the planet within distinct bands.
+      </p>
+    </div>
+    
+    <div class="card" id="glassCard"> 
+      <p>
+        Glass cage 
+      </p>
+    </div>
+
+   <a-scene background="color: black" physics="restitution:0.15;">
+ 
+      <a-assets>
+        <img
+          id="saturn"
+          src="https://cdn.glitch.global/9ba87748-d39e-45f9-baff-22526f957fd6/saturn.jpeg?v=1700553675489"
+        />
+        <img
+          id="saturn_nm"
+          src="https://cdn.glitch.global/9ba87748-d39e-45f9-baff-22526f957fd6/NormalMap%20(5).png?v=1700553684930"
+        />
+         <a-asset-item id="feather_1" src="https://cdn.glitch.global/9ba87748-d39e-45f9-baff-22526f957fd6/feather.glb?v=1700566143618"></a-asset-item>
+        <a-asset-item id="box" src="https://cdn.glitch.global/9ba87748-d39e-45f9-baff-22526f957fd6/glass_box.glb?v=1700565614697"></a-asset-item>
+        <a-asset-item id="ball_1" src="https://cdn.glitch.global/9ba87748-d39e-45f9-baff-22526f957fd6/bowling_ball.glb?v=1700566854621"></a-asset-item>
+      
+      </a-assets>
+     
+      <a-entity rotation="0 0 0">
+          <a-camera position="0 2 4">
+          <a-entity
+            cursor=""
+            position="0 0 -1"
+            geometry="primitive: ring; radiusInner: 0.02; radiusOuter: 0.03"
+            material="color: black; shader: flat; opacity: 0.5"
+            animation__click="property: scale; startEvents: click; easing: easeInCubic; dur: 150; from: 0.1 0.1 0.1; to: 1 1 1"
+            raycaster=""
+          >
+          </a-entity>
+        </a-camera>
+        </a-entity>
+        
+          
+      <a-sphere color="silver"
+               position="0 -1 0"
+               material="color: gray;
+                       src: #saturn;
+                       repeat: 600 600;
+                       normal-map: #saturn_nm;
+                       normal-texture-repeat: 200 200;
+                       normal-scale: 1 -1;
+                       roughness: 0.5"
+               scale="1000 1000 1"
+               rotation="-90 0 -90">
+      </a-sphere>
+      
+      <a-ring ring color="#1947E8"
+              radius-inner="1020" 
+              radius-outer="1090"
+              position="0 -500 0"
+              rotation="-45 -45 0"
+              opacity="0.5">
+      </a-ring>
+      <a-ring ring color="#C5CFF0"
+              radius-inner="1020" 
+              radius-outer="1090"
+              position="0 -486 0"
+              rotation="-45 -45 0"
+              opacity="0.5">
+      </a-ring>
+      <a-ring ring color="#1947E8"
+              radius-inner="1020" 
+              radius-outer="1090"
+              position="0 -472 0"
+              rotation="-45 -45 0"
+              opacity="0.5">
+      </a-ring>
+       <a-ring ring color="#1947E8"
+              radius-inner="1020" 
+              radius-outer="1090"
+              position="0 -458 0"
+              rotation="-45 -45 0"
+               opacity="0.5">
+      </a-ring>
+      <a-ring ring color="#9399B1"
+              radius-inner="1020" 
+              radius-outer="1090"
+              position="0 -444 0"
+              rotation="-45 -45 0"
+              opacity="0.5">
+      </a-ring>
+      <a-ring ring color="#1947E8"
+              radius-inner="1020" 
+              radius-outer="1090"
+              position="0 -430 0"
+              rotation="-45 -45 0"
+              opacity="0.5">
+      </a-ring>
+      <a-ring ring color="#090909"
+              radius-inner="1020" 
+              radius-outer="1090"
+              position="0 -416 0"
+              rotation="-45 -45 0"
+              opacity="0.5">
+      </a-ring>
+       <a-ring ring color="#CE8527"
+              radius-inner="1020" 
+              radius-outer="1090"
+              position="0 -402 0"
+              rotation="-45 -45 0"
+               opacity="0.5">
+      </a-ring>
+      <a-ring ring color="#CE8527"
+              radius-inner="1020" 
+              radius-outer="1090"
+              position="0 -388 0"
+              rotation="-45 -45 0"
+              opacity="0.5">
+      </a-ring>
+      <a-ring ring color="#CE8527"
+              radius-inner="1020" 
+              radius-outer="1090"
+              position="0 -374 0"
+              rotation="-45 -45 0"
+              opacity="0.5">
+      </a-ring>
+      <a-ring ring color="#CE8527"
+              radius-inner="1020" 
+              radius-outer="1090"
+              position="0 -360 0"
+              rotation="-45 -45 0"
+              opacity="0.5">
+      </a-ring>
+      <a-ring ring color="#F0D4B0"
+              radius-inner="1020" 
+              radius-outer="1090"
+              position="0 -346 0"
+              rotation="-45 -45 0"
+              opacity="0.5">
+      </a-ring>
+      <a-ring ring color="#090909"
+              radius-inner="1020" 
+              radius-outer="1090"
+              position="0 -332 0"
+              rotation="-45 -45 0"
+              opacity="0.5">
+      </a-ring>
+       <a-ring ring color="#CE8527"
+              radius-inner="1020" 
+              radius-outer="1090"
+              position="0 -318 0"
+              rotation="-45 -45 0"
+               opacity="0.5">
+      </a-ring>
+      <a-ring ring color="#D77E0F"
+              radius-inner="1020" 
+              radius-outer="1090"
+              position="0 -304 0"
+              rotation="-45 -45 0"
+              opacity="0.5">
+      </a-ring>
+      <a-ring ring color="#D77E0F"
+              radius-inner="1020" 
+              radius-outer="1090"
+              position="0 -290 0"
+              rotation="-45 -45 0"
+              opacity="0.5">
+      </a-ring>
+       <a-ring ring color="#C89C65"
+              radius-inner="1020" 
+              radius-outer="1090"
+              position="0 -276 0"
+              rotation="-45 -45 0"
+               opacity="0.5">
+      </a-ring>
+      <a-ring ring color="#6D563A"
+              radius-inner="1020" 
+              radius-outer="1090"
+              position="0 -262 0"
+              rotation="-45 -45 0"
+              opacity="0.5">
+      </a-ring>
+      <a-ring ring color="#C89C65"
+              radius-inner="1020" 
+              radius-outer="1090"
+              position="0 -248 0"
+              rotation="-45 -45 0"
+              opacity="0.5">
+      </a-ring>
+      <a-ring ring color="#6D563A"
+              radius-inner="1020" 
+              radius-outer="1090"
+              position="0 -234 0"
+              rotation="-45 -45 0"
+              opacity="0.5">
+      </a-ring>
+      
+      <a-entity glass-cage
+        gltf-model="#box"
+        scale="0.1 0.1 0.1"
+        position="7.5 0 -5"
+      ></a-entity>
+        <a-entity
+        id="feather"
+        gltf-model="#feather_1"
+        scale="0.01 0.01 0.01"
+        position="-0.2 1 -6"
+        rotation="90 0 90"
+      ></a-entity>
+       <a-entity
+        id="ball"
+        gltf-model="#ball_1"
+        scale="3 3 3"
+        position="0.2 1 -6"
+        rotation="90 0 90"
+      ></a-entity>
+
+     
+    </a-scene>
+  </body>
+</html>

@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+  <head>
+     <script src="https://aframe.io/releases/1.2.0/aframe.min.js"></script>
+     <script type="text/javascript" src="index.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
+   <style>
+    .buttons {
+      position: absolute;
+      bottom: 10px;
+      left: 0;
+      width: 100%;
+      height: 10em;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 999;
+      }
+    
+    .b1, .b2{
+      margin: 5px;
+      padding: 5px;
+      border: 2px solid white;
+      border-radius: 10px;
+      background: transparent;
+      color: white;
+      font-weight: bold;
+      font-size: 14px;
+      font-family: Poppins, fantasy;
+      width: 4em;
+      height: 3 em;
+    }
+      
+    .b1:active, .b2:active {
+  background-color: #A9A9A9;
+  transform: translateY(4px);
+    }
+    </style>
+  </head>
+
+  <body>
+      
+      
+    <div class="buttons">
+          <button class="b1"><i class="fa-solid fa-play"></i></button>
+          <button class="b2"><i class="fa-solid fa-rotate-right"></i></button>
+    </div>
+    
+    <a-scene background="color: black" physics="restitution:0.15;">
+ 
+      <a-assets>
+        <img
+          id="mercury"
+          src="https://cdn.glitch.global/73bb3482-d63f-4d44-82c8-0fb30003a1fe/mercury.jpg?v=1700512788972"
+        />
+        <img
+          id="mercury_nm"
+          src="https://cdn.glitch.global/73bb3482-d63f-4d44-82c8-0fb30003a1fe/mercury nm.png?v=1700512846238"
+        />
+        <img
+          id="caloris"
+          src="https://cdn.glitch.global/73bb3482-d63f-4d44-82c8-0fb30003a1fe/caloris.jpeg?v=1700516089958"
+        />
+         <a-asset-item id="feather_1" src="https://cdn.glitch.global/73bb3482-d63f-4d44-82c8-0fb30003a1fe/feather.glb?v=1701938554181"></a-asset-item>
+        <a-asset-item id="box" src="https://cdn.glitch.global/73bb3482-d63f-4d44-82c8-0fb30003a1fe/glass_box.glb?v=1701938573447"></a-asset-item>
+        <a-asset-item id="ball_1" src="https://cdn.glitch.global/73bb3482-d63f-4d44-82c8-0fb30003a1fe/bowling_ball.glb?v=1701938521724"></a-asset-item>
+      
+      </a-assets>
+      
+     
+      <a-plane color="black"
+               position="0 0 0"
+               material="color: gray;
+                       src: #mercury;
+                       repeat: 20 20;
+                       normal-map: #mercury_nm;
+                       normal-texture-repeat: 20 20;
+                       normal-scale: 1 -1;
+                       roughness: 0.5"
+               height="100"
+               width="100"
+               rotation="-90 0 -90">
+      </a-plane>
+      <a-image position="10 0.05 -25" 
+               scale="10 10 10"
+               rotation="-90 0 0"
+               src="#caloris">
+      </a-image>
+       <a-entity
+        gltf-model="#box"
+        scale="0.1 0.1 0.1"
+        position="7.5 0 -5"
+      ></a-entity>
+        <a-entity
+        id="feather"
+        gltf-model="#feather_1"
+        scale="0.01 0.01 0.01"
+        position="-0.2 1 -6"
+        rotation="90 0 90"
+      ></a-entity>
+       <a-entity
+        id="ball"
+        gltf-model="#ball_1"
+        scale="3 3 3"
+        position="0.2 1 -6"
+        rotation="90 0 90"
+      ></a-entity>
+     
+     
+    </a-scene>
+  </body>
+</html>

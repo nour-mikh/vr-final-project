@@ -6,38 +6,60 @@
     <script src="https://aframe.io/releases/1.2.0/aframe.min.js"></script>
     <script src="https://unpkg.com/aframe-event-set-component@3.0.3/dist/aframe-event-set-component.min.js"></script>
     <script src="rotation.js"></script>
+	<script src="./js/parser.js"></script>
+	<script src="./js/aframe-parametric-curve.js"></script>
+	<script src="./js/aframe-tube-geometry.js"></script>
+	<script src="./js/aframe-curve-follow.js"></script>
+    
 </head>
 <body>
     <a-scene>
-        <a-sky src="assets/milkyway.jpg"></a-sky>
+        <a-sky src="assets/milkyway.jpg" scale="20 20 20"></a-sky>
         <!-- Sun -->
-        <a-sphere position="0 0 0" radius="10" color="#ffcc00"></a-sphere>
 
-        <!-- Orbits -->
-        <a-torus position="0 0 0" radius="15" radius-tubular="0.005" segments-tubular="128" rotation="-90 0 0" color="#999999"></a-torus> <!-- Mercury -->
-        <a-torus position="0 0 0" radius="20" radius-tubular="0.005" segments-tubular="128" rotation="-90 0 0" color="#cccccc"></a-torus> <!-- Venus -->
-        <a-torus position="0 0 0" radius="30" radius-tubular="0.005" segments-tubular="128" rotation="-90 0 0" color="#6666ff"></a-torus> <!-- Earth -->
-        <a-torus position="0 0 0" radius="45" radius-tubular="0.005" segments-tubular="128" rotation="-90 0 0" color="#ff6666"></a-torus> <!-- Mars -->
-        <a-torus position="0 0 0" radius="70" radius-tubular="0.005" segments-tubular="128" rotation="-90 0 0" color="#ffcc66"></a-torus> <!-- Jupiter -->
-        <a-torus position="0 0 0" radius="100" radius-tubular="0.005" segments-tubular="128" rotation="-90 0 0" color="#ff9900"></a-torus> <!-- Saturn -->
-        <a-torus position="0 0 0" radius="130" radius-tubular="0.005" segments-tubular="128" rotation="-90 0 0" color="#66ccff"></a-torus> <!-- Uranus -->
-        <a-torus position="0 0 0" radius="160" radius-tubular="0.005" segments-tubular="128" rotation="-90 0 0" color="#3366ff"></a-torus> <!-- Neptune -->
+        <a-entity position="2000 500 1000">
+            <a-camera wasd-controls="fly: 500;"
+            acceleration="2"></a-camera>
+        </a-entity>
 
+        <a-sphere position="0 0 0" radius="109.298" color="#ffcc00"></a-sphere>
+
+        <!-- Paths-->
+        <a-entity id="pathMercury" parametric-curve="xyzFunctions: 150*cos((157/2200)*t), 0, 150*sin((157/2200)*t); tRange: 0, 88.1;"></a-entity>
+        <a-entity id="pathVenus" parametric-curve="xyzFunctions: 227.846*cos((157/2200)*t), 0, 227.846*sin((157/2200)*t); tRange: 0, 88.1;"></a-entity>
+        <a-entity id="pathEarth" parametric-curve="xyzFunctions: 384.615*cos((157/2200)*t), 0, 384.615*sin((157/2200)*t); tRange: 0, 88.1;"></a-entity>
+        <a-entity id="pathMars" parametric-curve="xyzFunctions: 584.615*cos((157/2200)*t), 0, 584.615*sin((157/2200)*t); tRange: 0, 88.1;"></a-entity>
+        <a-entity id="pathJupiter" parametric-curve="xyzFunctions: 2000*cos((157/2200)*t), 0, 2000*sin((157/2200)*t); tRange: 0, 88.1;"></a-entity>
+        <a-entity id="pathSaturn" parametric-curve="xyzFunctions: 3692.308*cos((157/2200)*t), 0, 3692.308*sin((157/2200)*t); tRange: 0, 88.1;"></a-entity>
+        <a-entity id="pathUranus" parametric-curve="xyzFunctions: 6000*cos((157/2200)*t), 0, 6000*sin((157/2200)*t); tRange: 0, 88.1;"></a-entity>
+        <a-entity id="pathNeptune" parametric-curve="xyzFunctions: 9000*cos((157/2200)*t), 0, 9000*sin((157/2200)*t); tRange: 0, 88.1;"></a-entity>
+        
+
+        <!-- Orbits-->
+        <a-entity position="0 0 0" tube-geometry="curveData: #pathMercury; type: parametric-curve; tubeSegments: 128; radius: 01; tubeColor: white;" visible="true"></a-entity>
+        <a-entity position="0 0 0" tube-geometry="curveData: #pathVenus; type: parametric-curve; tubeSegments: 128; radius: 01; tubeColor: #cccccc;" visible="true"></a-entity>
+        <a-entity position="0 0 0" tube-geometry="curveData: #pathEarth; type: parametric-curve; tubeSegments: 128; radius: 01; tubeColor: #6666ff;" visible="true"></a-entity>
+        <a-entity position="0 0 0" tube-geometry="curveData: #pathMars; type: parametric-curve; tubeSegments: 128; radius: 01; tubeColor: #ff6666;" visible="true"></a-entity>
+        <a-entity position="0 0 0" tube-geometry="curveData: #pathJupiter; type: parametric-curve; tubeSegments: 128; radius: 01; tubeColor: #ffcc66;" visible="true"></a-entity>
+        <a-entity position="0 0 0" tube-geometry="curveData: #pathSaturn; type: parametric-curve; tubeSegments: 128; radius: 01; tubeColor: #ff9900;" visible="true"></a-entity>
+        <a-entity position="0 0 0" tube-geometry="curveData: #pathUranus; type: parametric-curve; tubeSegments: 128; radius: 01; tubeColor: #66ccff;" visible="true"></a-entity>
+        <a-entity position="0 0 0" tube-geometry="curveData: #pathNeptune; type: parametric-curve; tubeSegments: 128; radius: 01; tubeColor: #3366ff;" visible="true"></a-entity>
+
+    
         <!-- Planets -->
-        <a-sphere position="15 0 0" radius="0.3" color="#bfbfbf" rotation="0 0 0">
-            <a-animation attribute="rotation" dur="10000" to="0 360 0" easing="linear" repeat="indefinite"></a-animation>
-        </a-sphere> <!-- Mercury -->
-        <a-sphere position="20 0 0" radius="0.7" color="#ffcc66" rotation="0 0 0">
-            <a-animation attribute="rotation" dur="20000" to="0 360 0" easing="linear" repeat="indefinite"></a-animation>
-        </a-sphere> <!-- Venus -->
-        <a-sphere position="30 0 0" radius="0.75" color="#3399ff" rotation="0 0 0">
-            <a-animation attribute="rotation" dur="30000" to="0 360 0" easing="linear" repeat="indefinite"></a-animation>
-        </a-sphere> <!-- Earth -->
-        <a-sphere position="45 0 0" radius="0.5" color="#ff6600" rotation="0 0 0">
-            <a-animation attribute="rotation" dur="40000" to="0 360 0" easing="linear" repeat="indefinite"></a-animation>
-        </a-sphere> <!-- Mars -->
-        <a-sphere position="70 0 0" radius="2" color="#ff9900" rotation="0 0 0">
-            <a-animation attribute="rotation" dur="50000" to="0 360 0" easing="linear" repeat="indefinite"></a-animation>
-        </a-sphere> <!-- Jupiter -->
-        <a-sphere position="100 0 0" radius="1.5" color="#ffcc00" rotation="0 0 0">
-            <a-animation attribute="rotation" dur="60000" to="0 360 0" easing
+        
+        <a-entity position="150 0 0" geometry="primitive: sphere" material="color: #bfbfbf" scale="10 10 10" curve-follow="curveData: #pathMercury; type: parametric-curve; duration: 24; loop: true;"></a-entity><!-- Mercury-->
+         
+        <a-entity position="227.846 0 0" geometry="primitive: sphere" material="color: #ffcc66" scale="24.83 24.83 24.83" curve-follow="curveData: #pathVenus; type: parametric-curve; duration: 62; loop: true;"></a-entity><!-- Venus -->
+        
+        <a-entity position="384.615 0 0" geometry="primitive: sphere" material="color: #3399ff" scale="26.15 26.15 26.15" curve-follow="curveData: #pathEarth; type: parametric-curve; duration: 100; loop: true;"></a-entity> <!-- Earth -->
+        
+        <a-entity position="584.615 0 0" geometry="primitive: sphere" material="color: #ff6600" scale="13.92 13.92 13.92" curve-follow="curveData: #pathMars; type: parametric-curve; duration: 188; loop: true;"></a-entity> <!-- Mars -->
+        
+        <a-entity position="2000 0 0" geometry="primitive: sphere" material="color: #ff6600" scale="293.14 293.14 293.14" curve-follow="curveData: #pathJupiter; type: parametric-curve; duration: 1186; loop: true;"></a-entity> <!-- Jupiter -->
+        
+        <a-entity position="3692.308 0 0" geometry="primitive: sphere" material="color: #ff9900" scale="247.12 247.12 247.12" curve-follow="curveData: #pathSaturn; type: parametric-curve; duration: 2946; loop: true;"></a-entity> <!-- Saturn -->
+        
+        <a-entity position="6000 0 0" geometry="primitive: sphere" material="color: #66ccff" scale="104.72 104.72 104.72" curve-follow="curveData: #pathUranus; type: parametric-curve; duration: 8401; loop: true;"></a-entity> <!-- Uranus -->
+        
+        <a-entity position="9000 0 0" geometry="primitive: sphere" material="color: #3366ff" scale="101.43 101.43 101.43" curve-follow="curveData: #pathNeptune; type: parametric-curve; duration: 16479; loop: true;"></a-entity> <!-- Neptune -->

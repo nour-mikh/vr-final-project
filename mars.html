@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <script src="https://aframe.io/releases/1.2.0/aframe.min.js"></script>
+    <script type="text/javascript" src="indexMars.js"></script>
+    <script src="https://unpkg.com/aframe-event-set-component@3.0.3/dist/aframe-event-set-component.min.js"></script>
+    <script src="./js/parser.js"></script>
+    <script src="./js/aframe-parametric-curve.js"></script>
+    <script src="./js/aframe-tube-geometry.js"></script>
+    <script src="./js/aframe-curve-follow.js"></script>
+    <link rel="stylesheet" href="style.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
+   <style>
+    .buttons {
+      position: absolute;
+      bottom: 10px;
+      left: 0;
+      width: 100%;
+      height: 10em;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 999;
+      }
+    
+    .b1, .b2{
+      margin: 5px;
+      padding: 5px;
+      border: 2px solid white;
+      border-radius: 10px;
+      background: transparent;
+      color: white;
+      font-weight: bold;
+      font-size: 14px;
+      font-family: Poppins, fantasy;
+      width: 4em;
+      height: 3 em;
+    }
+      
+    .b1:active, .b2:active {
+  background-color: #A9A9A9;
+  transform: translateY(4px);
+    }
+    </style>
+  </head>
+
+  <body>
+    
+    <div class="buttons">
+          <button class="b1"><i class="fa-solid fa-play"></i></button>
+          <button class="b2"><i class="fa-solid fa-rotate-right"></i></button>
+    </div>
+    
+    <!-- <div class="card" id="exomarsCard"> 
+      <h3>
+        Exomars Rover
+      </h3>
+      <p>
+        Launched by the European Space Agency (ESA) and Roscosmos in 2022, aims to explore Mars' surface and subsurface.
+      </p>
+    </div>
+    
+    <div class="card" id="perseveranceCard"> 
+      <h3>
+        Perseverance Rover
+      </h3>
+      <p>  
+Perseverance is NASA's Mars rover, launched in 2020. It explores Mars' Jezero Crater, searching for signs of past life and collecting samples.
+      </p>
+    </div>
+    
+  <div class="card" id="volcanoCard"> 
+      <h3>
+        Volcano
+      </h3>
+      <p>  
+Mars has the solar system's largest volcano, Olympus Mons, and other shield volcanoes like Ascraeus Mons and Pavonis Mons.
+      </p>
+    </div> -->
+
+    
+
+    <a-scene physics="restitution:0.15;">
+
+      <a-sky rotation="60 -90 0" src="assets/milkyway.jpg" scale="21 21 21"></a-sky>     
+
+      <!-- Paths-->
+      <a-entity id="pathRover1"  parametric-curve="xyzFunctions: 150*sqrt(2)*cos(t)*(sin(t))^2+1, 0.2, 200*sqrt(2)*cos(t)*sin(t)*(sin(t)^2); tRange: 0,3.14*pi;"></a-entity>
+      <a-entity id="pathRover2"  parametric-curve="xyzFunctions: (15+(1/0.001)*tanh(0.001*sin(6*t)))*cos(t), 0.55, (15+(1/0.001)*tanh(0.001*sin(6*t)))*sin(t); tRange: 0,6.28*pi;"></a-entity>
+      <a-entity id="pathRocket" parametric-curve="xyzFunctions: 3*t, -(4*t^2)+412.5, 15*sin((157/2200)*t); tRange: 0, 10;"></a-entity>
+
+      <a-entity 
+			tube-geometry="curveData: #pathRover1; type: parametric-curve; 
+						   tubeSegments: 200; radius: 0.02; tubeColor: yellow;"
+      position="0 0.1 0"
+      visible="false">
+		</a-entity>
+
+    <a-entity 
+			tube-geometry="curveData: #pathRover2; type: parametric-curve; 
+						   tubeSegments: 200; radius: 0.02; tubeColor: yellow;"
+      position="0 0.1 0"
+      visible="false">
+		</a-entity>
+
+    <a-entity 
+      position="0 0 -4"
+			tube-geometry="curveData: #pathRocket; type: parametric-curve; 
+						   tubeSegments: 200; radius: 0.02; tubeColor: yellow;"
+      
+      visible="false">
+		</a-entity>
+
+      <a-assets>
+        <img
+          id="mars"
+          src="https://cdn.glitch.global/e01c0656-879d-40dc-b790-17d3ce3eb6c9/mars.jpg?v=1701938352282"
+        />
+        <img
+          id="mars_nm"
+          src="https://cdn.glitch.global/e01c0656-879d-40dc-b790-17d3ce3eb6c9/mars nm.png?v=1701938366986"
+        />
+        <a-asset-item id="feather_1" src="./assets/Mars/feather.glb"></a-asset-item>
+        <a-asset-item id="box" src="./assets/Mars/glass_box.glb"></a-asset-item>
+        <a-asset-item id="ball_1" src="./assets/Mars/bowling_ball.glb"></a-asset-item>
+         <a-asset-item id="rover1" src="./assets/Mars/esa_exomars_rover.glb"></a-asset-item>
+        <a-asset-item id="rover2" src="./assets/Mars/mars_2020_rover_with_mmrtg_marked.glb"></a-asset-item>
+        <a-asset-item id="volcano" src="https://cdn.glitch.global/e01c0656-879d-40dc-b790-17d3ce3eb6c9/volcano.glb?v=1702298050218"></a-asset-item>
+        <a-assets-item id="earth" src="./assets/Mars/earth_globe.glb"></a-assets-item>
+        <a-assets-item id="sun" src="./assets/Mars/sun.glb"></a-assets-item>
+        <a-assets-item id="rocket" src="./assets/Mars/falcon_heavy.glb"></a-assets-item>
+
+      </a-assets>
+      
+        <a-entity rotation="0 0 0">
+          <a-camera position="0 2 4">
+          <a-entity
+            cursor=""
+            position="0 0 -1"
+            geometry="primitive: ring; radiusInner: 0.02; radiusOuter: 0.03"
+            material="color: black; shader: flat; opacity: 0.5"
+            animation__click="property: scale; startEvents: click; easing: easeInCubic; dur: 150; from: 0.1 0.1 0.1; to: 1 1 1"
+            raycaster=""
+          >
+          </a-entity>
+        </a-camera>
+        </a-entity>
+      
+     
+      <a-sphere color="#B24D25"
+               position="0 -1 0"
+               material="color: #B24D25;
+                       src: #mars;
+                       repeat: 500 500;
+                       normal-map: #mars_nm;
+                       normal-texture-repeat: 500 500;
+                       normal-scale: 1 -1;
+                       roughness: 0.5"
+               scale="1000 1000 1"
+               rotation="-90 0 -90">
+      </a-sphere>
+      <a-entity
+        gltf-model="#box"
+        scale="0.1 0.1 0.1"
+        position="7.5 0 -5"
+      ></a-entity>
+        <a-entity
+        id="feather"
+        gltf-model="#feather_1"
+        scale="0.01 0.01 0.01"
+        position="-0.2 1 -6"
+        rotation="90 0 90"
+      ></a-entity>
+      <a-entity
+        id="earth-globe"
+        color="white"
+        gltf-model="#earth"
+        scale="3 3 3"
+        position="660.505 1249.121 -2213.573"
+        rotation="90 0 90"
+      ></a-entity>
+      <a-entity
+        curve-follow="curveData: #pathRocket; delay:20000; type: parametric-curve; duration: 20; loop: false;"
+      ><a-entity
+        gltf-model="#rocket"
+        scale="0.02 0.02 0.02"
+				rotation="223.400 158.190 -160.000"
+      ></a-entity>
+      </a-entity>
+       <a-entity id="sun-globe"
+        gltf-model="#sun"
+        scale="5 5 5"
+        position="-2632.390 3858.275 -7901.013"
+        rotation="90 0 90"
+      ></a-entity>
+       <a-entity
+        id="ball"
+        gltf-model="#ball_1"
+        scale="3 3 3"
+        position="0.2 1 -6"
+        rotation="90 0 90"
+      ></a-entity>
+      <a-entity exomars
+        gltf-model="#rover1"
+        scale="1 1 1"
+        position="5 0.6 -5"
+        rotation="0 -45 0"
+        curve-follow="curveData: #pathRover1; type: parametric-curve; duration: 80; loop: true;"
+       
+      ></a-entity>
+      
+      <a-entity perseverance
+        gltf-model="#rover2"
+        scale="5 5 5"
+        position="-5 0.6 -10"
+        rotation="0 45 0"
+        curve-follow="curveData: #pathRover2; type: parametric-curve; duration: 80; loop: true;"
+      ></a-entity>
+      
+      <a-entity volcano
+        gltf-model="#volcano"
+        scale="0.5 0.5 0.5"
+        position="49.4 -3 47.6"
+        rotation="0 38.7 0"
+      ></a-entity>
+     
+     
+     
+    </a-scene>
+  </body>
+</html>

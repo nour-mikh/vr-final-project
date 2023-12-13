@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+  <head>
+     <script src="https://aframe.io/releases/1.2.0/aframe.min.js"></script>
+     <script type="text/javascript" src="indexVenus.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
+   <style>
+    .buttons {
+      position: absolute;
+      bottom: 10px;
+      left: 0;
+      width: 100%;
+      height: 10em;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 999;
+      }
+    
+    .b1, .b2{
+      margin: 5px;
+      padding: 5px;
+      border: 2px solid white;
+      border-radius: 10px;
+      background: transparent;
+      color: white;
+      font-weight: bold;
+      font-size: 14px;
+      font-family: Poppins, fantasy;
+      width: 4em;
+      height: 3 em;
+    }
+      
+    .b1:active, .b2:active {
+  background-color: #A9A9A9;
+  transform: translateY(4px);
+    }
+    </style>
+  </head>
+
+  <body>
+      
+      
+    <div class="buttons">
+          <button class="b1"><i class="fa-solid fa-play"></i></button>
+          <button class="b2"><i class="fa-solid fa-rotate-right"></i></button>
+    </div>
+    
+    <a-scene background="color: black" physics="restitution:0.15;">
+ 
+      <a-assets>
+        <img
+          id="venus"
+          src="https://cdn.glitch.global/a97754af-311d-477e-95bb-8f91f502e453/venus.jpg?v=1702324747107"
+        />
+        <img
+          id="venus_nm"
+          src="https://cdn.glitch.global/a97754af-311d-477e-95bb-8f91f502e453/venus nm.png?v=1702325216545"
+        />
+        
+         <a-asset-item id="feather_1" src="https://cdn.glitch.global/a97754af-311d-477e-95bb-8f91f502e453/feather.glb?v=1702325687325"></a-asset-item>
+        <a-asset-item id="box" src="https://cdn.glitch.global/a97754af-311d-477e-95bb-8f91f502e453/glass_box.glb?v=1702325729137"></a-asset-item>
+        <a-asset-item id="ball_1" src="https://cdn.glitch.global/a97754af-311d-477e-95bb-8f91f502e453/bowling_ball.glb?v=1702325611040"></a-asset-item>
+      
+      </a-assets>
+      
+     
+      <a-sphere color="black"
+               position="0 0 0"
+               material="color: #977e16;
+                       src: #venus;
+                       repeat: 20 20;
+                       normal-map: #venus_nm;
+                       normal-texture-repeat: 20 20;
+                       normal-scale: 1 -1;
+                       roughness: 0.5"
+               scale="1000 1000 1"
+               rotation="-90 0 -90">
+      </a-sphere>
+      
+       <a-entity
+        gltf-model="#box"
+        scale="0.1 0.1 0.1"
+        position="7.5 0 -5"
+      ></a-entity>
+        <a-entity
+        id="feather"
+        gltf-model="#feather_1"
+        scale="0.01 0.01 0.01"
+        position="-0.2 1 -6"
+        rotation="90 0 90"
+      ></a-entity>
+       <a-entity
+        id="ball"
+        gltf-model="#ball_1"
+        scale="3 3 3"
+        position="0.2 1 -6"
+        rotation="90 0 90"
+      ></a-entity>
+     
+     
+    </a-scene>
+  </body>
+</html>
